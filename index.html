@@ -31,10 +31,6 @@
             height: 40vh;
             width: 100%;
         }
-        /* Custom suggestion box styles */
-        .suggestion-item:hover {
-            background-color: #f0f4ff;
-        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -45,7 +41,7 @@
             <nav class="mt-4 flex flex-wrap gap-2">
                 <button class="nav-link px-4 py-2 rounded-md font-semibold text-gray-700 bg-gray-200 hover:bg-indigo-500 hover:text-white transition" data-view="daily-log">Daily Log</button>
                 <button class="nav-link px-4 py-2 rounded-md font-semibold text-gray-700 bg-gray-200 hover:bg-indigo-500 hover:text-white transition" data-view="weekly-log">Weekly Log</button>
-                <button class="nav-link px-4 py-2 rounded-md font-semibold text-gray-700 bg-gray-200 hover:bg-indigo-500 hover:text-white transition" data-view="weekly-totals">Week Total</button>
+                <button class="nav-link px-4 py-2 rounded-md font-semibold text-gray-700 bg-gray-200 hover:bg-indigo-500 hover:text-white transition" data-view="weekly-totals">Weekly Totals</button>
                 <button class="nav-link px-4 py-2 rounded-md font-semibold text-gray-700 bg-gray-200 hover:bg-indigo-500 hover:text-white transition" data-view="weight">Weight</button>
             </nav>
         </header>
@@ -72,10 +68,10 @@
                     <div class="mb-6">
                         <h3 class="text-xl font-semibold mb-2">Add Food</h3>
                         <form id="add-food-form" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
-                            <div class="md:col-span-2 relative">
+                            <div class="md:col-span-2">
                                 <label for="food-name" class="block text-sm font-medium text-gray-700">Food Name</label>
-                                <input id="food-name" name="food-name" type="text" required autocomplete="off" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                                <div id="food-suggestions" class="absolute z-10 w-full bg-white border border-gray-300 rounded-md mt-1 shadow-lg hidden max-h-60 overflow-y-auto"></div>
+                                <input list="common-foods-list" id="food-name" name="food-name" type="text" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <datalist id="common-foods-list"></datalist>
                             </div>
                             <div>
                                 <label for="calories" class="block text-sm font-medium text-gray-700">Calories</label>
@@ -107,11 +103,7 @@
             <!-- Weekly Totals View -->
             <div id="weekly-totals" class="view">
                 <div class="bg-white rounded-lg shadow p-6">
-                    <h2 class="text-2xl font-bold mb-4">Week Total</h2>
-                    <div class="text-center mb-6">
-                        <p class="text-lg text-gray-600">Total Calories for the Week</p>
-                        <p class="text-5xl font-bold text-indigo-600"><span id="weekly-total-calories">0</span> kcal</p>
-                    </div>
+                    <h2 class="text-2xl font-bold mb-4">Weekly Totals</h2>
                     <div class="chart-container">
                         <canvas id="weekly-chart"></canvas>
                     </div>
@@ -182,56 +174,56 @@
                     { name: "Food (50 cal)", calories: 50 },
                     { name: "Food (20 cal)", calories: 20 },
                     { name: "Food (10 cal)", calories: 10 },
-                    { name: "Fruits - Banana", calories: 100 },
+                    { name: "Fruits - Ban", calories: 100 },
                     { name: "Fruits - Peach", calories: 70 },
-                    { name: "Fruits - Avocado", calories: 250 },
+                    { name: "Fruits - Avoca", calories: 250 },
                     { name: "Fruits - Apple", calories: 95 },
                     { name: "Dairy/Eggs - Eggs", calories: 70 },
-                    { name: "Dairy/Eggs - Yogurt", calories: 80 },
+                    { name: "Dairy/Eggs - Yogur", calories: 80 },
                     { name: "Dairy/Eggs - Milk", calories: 150 },
-                    { name: "Dairy/Eggs - Almond Milk (80 cal)", calories: 80 },
-                    { name: "Dairy/Eggs - Almond Milk (30 cal)", calories: 30 },
-                    { name: "Dairy/Eggs - Cheese (80 cal)", calories: 80 },
-                    { name: "Dairy/Eggs - Cheese (50 cal)", calories: 50 },
-                    { name: "Grains - Whole Wheat Bread", calories: 110 },
-                    { name: "Grains - Bread (70 cal)", calories: 70 },
-                    { name: "Grains - Bread (35 cal)", calories: 35 },
-                    { name: "Grains - Oatmeal", calories: 300 },
-                    { name: "Other Foods - Bacon", calories: 440 },
-                    { name: "Other Foods - Sausage", calories: 360 },
-                    { name: "Other Foods - Beans", calories: 440 },
+                    { name: "Dairy/Eggs - Almon", calories: 80 },
+                    { name: "Dairy/Eggs - Almon", calories: 30 },
+                    { name: "Dairy/Eggs - Chees", calories: 80 },
+                    { name: "Dairy/Eggs - Chees", calories: 50 },
+                    { name: "Grains - Whole", calories: 110 },
+                    { name: "Grains - Bread", calories: 70 },
+                    { name: "Grains - Bread", calories: 35 },
+                    { name: "Grains - Oat", calories: 300 },
+                    { name: "Other Foods - Bac", calories: 440 },
+                    { name: "Other Foods - Sausa", calories: 360 },
+                    { name: "Other Foods - Bean", calories: 440 },
                     { name: "Other Foods - Ham", calories: 80 },
-                    { name: "Other Foods - Peanut Butter", calories: 100 },
-                    { name: "Other Foods - Popsicle", calories: 40 },
+                    { name: "Other Foods - Peanu", calories: 100 },
+                    { name: "Other Foods - Pop", calories: 40 },
                     { name: "Other Foods - Sauce", calories: 50 },
                     { name: "Other Foods - Oreo", calories: 340 },
-                    { name: "Other Foods - Andes Mint", calories: 25 },
-                    { name: "Other Foods - Hershey Kiss", calories: 15 },
-                    { name: "Chick-fil-A - Deluxe Sandwich", calories: 490 },
-                    { name: "Chick-fil-A - Sandwich", calories: 440 },
-                    { name: "Chick-fil-A - Strips", calories: 410 },
-                    { name: "Chick-fil-A - Biscuit", calories: 460 },
+                    { name: "Other Foods - Andes", calories: 25 },
+                    { name: "Other Foods - Hersh", calories: 15 },
+                    { name: "Chick-fil-A - Delux", calories: 490 },
+                    { name: "Chick-fil-A - Sand", calories: 440 },
+                    { name: "Chick-fil-A - Strip", calories: 410 },
+                    { name: "Chick-fil-A - Bisc", calories: 460 },
                     { name: "Chick-fil-A - Fries", calories: 440 },
-                    { name: "Chick-fil-A - Zesty Sauce", calories: 25 },
+                    { name: "Chick-fil-A - Zesty", calories: 25 },
                     { name: "Chick-fil-A - Shake", calories: 560 },
-                    { name: "Chick-fil-A - Lemonade", calories: 320 },
-                    { name: "McDonald's - Big Mac", calories: 550 },
+                    { name: "Chick-fil-A - Lem", calories: 320 },
+                    { name: "McDonald's - Big", calories: 550 },
                     { name: "McDonald's - Fries", calories: 440 },
-                    { name: "McDonald's - Quarter Pounder", calories: 520 },
-                    { name: "McDonald's - Egg McMuffin", calories: 480 },
-                    { name: "McDonald's - McNuggets", calories: 410 },
-                    { name: "Burger King - Whopper", calories: 670 },
+                    { name: "McDonald's - Quart", calories: 520 },
+                    { name: "McDonald's - Muf", calories: 480 },
+                    { name: "McDonald's - Nugs", calories: 410 },
+                    { name: "Burger King - Whop", calories: 670 },
                     { name: "Burger King - Fries", calories: 440 },
-                    { name: "Freddies - Lettuce Wrap Burger", calories: 500 },
+                    { name: "Freddies - Lett", calories: 500 },
                     { name: "Freddies - Fries", calories: 440 },
                     { name: "Dunkin - Donut", calories: 240 },
-                    { name: "Dunkin - Biscuit (470 cal)", calories: 470 },
-                    { name: "Dunkin - Biscuit (400 cal)", calories: 400 },
+                    { name: "Dunkin - Bisc", calories: 470 },
+                    { name: "Dunkin - Bisc", calories: 400 },
                     { name: "Dunkin - Wrap", calories: 210 },
-                    { name: "Salsarita's - Quesadilla", calories: 590 },
+                    { name: "Salsarita's - Ques", calories: 590 },
                     { name: "Salsarita's - Bowl", calories: 800 },
-                    { name: "Taco Bell - Quesadilla", calories: 510 },
-                    { name: "Taco Bell - Chalupa", calories: 360 }
+                    { name: "Taco Bell - Quesa", calories: 510 },
+                    { name: "Taco Bell - Chalu", calories: 360 }
                 ]
             };
 
@@ -243,14 +235,13 @@
             const addFoodForm = document.getElementById('add-food-form');
             const foodNameInput = document.getElementById('food-name');
             const caloriesInput = document.getElementById('calories');
-            const foodSuggestions = document.getElementById('food-suggestions');
             const totalCaloriesEl = document.getElementById('total-calories');
             const caloriesRemainingEl = document.getElementById('calories-remaining');
             const calorieProgress = document.getElementById('calorie-progress');
+            const commonFoodsDatalist = document.getElementById('common-foods-list');
             
             const weeklyLogContainer = document.getElementById('weekly-log-container');
             const weeklyChartCanvas = document.getElementById('weekly-chart');
-            const weeklyTotalCaloriesEl = document.getElementById('weekly-total-calories');
             let weeklyChart;
 
             const weightForm = document.getElementById('weight-form');
@@ -452,40 +443,21 @@
 
             datePicker.addEventListener('change', renderDailyLog);
             
-            const showSuggestions = (query = '') => {
-                const lowerCaseQuery = query.toLowerCase();
-                const filteredFoods = state.commonFoods.filter(food => food.name.toLowerCase().includes(lowerCaseQuery));
-                
-                if (filteredFoods.length > 0) {
-                    foodSuggestions.innerHTML = filteredFoods.slice(0, 50).map(food => 
-                        `<div class="suggestion-item p-2 cursor-pointer" data-name="${food.name}" data-calories="${food.calories}">
-                            ${food.name} <span class="text-sm text-gray-500">- ${food.calories} kcal</span>
-                        </div>`
-                    ).join('');
-                    foodSuggestions.classList.remove('hidden');
-                } else {
-                    foodSuggestions.classList.add('hidden');
+            foodNameInput.addEventListener('input', () => {
+                const food = state.commonFoods.find(f => f.name.toLowerCase() === foodNameInput.value.toLowerCase());
+                if (food) {
+                    caloriesInput.value = food.calories;
                 }
+            });
+
+            const populateCommonFoods = () => {
+                commonFoodsDatalist.innerHTML = '';
+                state.commonFoods.forEach(food => {
+                    const option = document.createElement('option');
+                    option.value = food.name;
+                    commonFoodsDatalist.appendChild(option);
+                });
             };
-
-            foodNameInput.addEventListener('input', () => showSuggestions(foodNameInput.value));
-            foodNameInput.addEventListener('focus', () => showSuggestions(foodNameInput.value));
-
-            foodSuggestions.addEventListener('click', (e) => {
-                const item = e.target.closest('.suggestion-item');
-                if (item) {
-                    foodNameInput.value = item.dataset.name;
-                    caloriesInput.value = item.dataset.calories;
-                    foodSuggestions.classList.add('hidden');
-                }
-            });
-            
-            document.addEventListener('click', (e) => {
-                if (!addFoodForm.contains(e.target)) {
-                    foodSuggestions.classList.add('hidden');
-                }
-            });
-
 
             // --- Weekly Log & Totals ---
             const getWeekData = () => {
@@ -530,9 +502,6 @@
                 const weekData = getWeekData();
                 const labels = weekData.map(d => new Date(d.date).toLocaleDateString('en-US', { weekday: 'short' }));
                 const data = weekData.map(d => d.totalCalories);
-                const totalWeeklyCalories = data.reduce((sum, cals) => sum + cals, 0);
-
-                weeklyTotalCaloriesEl.textContent = totalWeeklyCalories;
 
                 if (weeklyChart) {
                     weeklyChart.destroy();
@@ -543,7 +512,7 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: 'Daily Calories',
+                            label: 'Total Calories',
                             data: data,
                             backgroundColor: data.map(cal => cal > MAX_CALORIES ? 'rgba(239, 68, 68, 0.6)' : 'rgba(79, 70, 229, 0.6)'),
                             borderColor: data.map(cal => cal > MAX_CALORIES ? 'rgba(239, 68, 68, 1)' : 'rgba(79, 70, 229, 1)'),
@@ -564,7 +533,7 @@
                             },
                             title: {
                                 display: true,
-                                text: 'Daily Calories This Week'
+                                text: 'Calories This Week'
                             }
                         }
                     }
@@ -701,6 +670,7 @@
             const init = () => {
                 loadState();
                 datePicker.value = getTodayString();
+                populateCommonFoods();
                 switchView('daily-log');
             };
 
@@ -709,4 +679,3 @@
     </script>
 </body>
 </html>
-
